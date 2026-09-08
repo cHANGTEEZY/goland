@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+
 const balanceFile = "balance.txt"
 const withdrawReceiptFile = "withdrawReceipt.txt"
 
@@ -23,6 +24,7 @@ func writeWithdrawReceiptToFile(amount float64) {
 func getBalanceFromFile() (float64, error) {
 	data, err := os.ReadFile(balanceFile)
 	if err != nil {
+		fmt.Println("Errro!!!")
 		return 1000.0, nil
 	}
 	balanceText := strings.TrimSpace(string(data))
@@ -40,7 +42,7 @@ func main() {
 		accountBalance, err := getBalanceFromFile()
 		if err != nil {
 			fmt.Println("Error loading balance:", err)
-			return
+			panic(err)
 		}
 
 		fmt.Println("\nWhat do you want to do?")
@@ -93,6 +95,7 @@ func main() {
 		case 4:
 			fmt.Println("Thank you for using GO Bank! Goodbye!")
 			return
+
 
 		default:
 			fmt.Println("Invalid selection. Please try again.")
