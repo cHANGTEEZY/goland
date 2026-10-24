@@ -19,6 +19,12 @@ func (appUser user) outputUserDetails() {
 	fmt.Println("User created at:", appUser.userCreatedAt)
 }
 
+func (appUser *user) clearUserDetails() {
+	appUser.userFirstName = ""
+	appUser.userLastName = ""
+	appUser.userBirthDate = ""
+}
+
 func main() {
 	firstName := getUserData("Please enter your first name: ")
 	lastName := getUserData("Please enter your last name: ")
@@ -35,6 +41,8 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
+	appUser.outputUserDetails()
+	appUser.clearUserDetails()
 	appUser.outputUserDetails()
 }
 
