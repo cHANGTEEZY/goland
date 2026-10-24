@@ -12,7 +12,8 @@ type user struct {
 	userCreatedAt time.Time
 }
 
-// constructor function for creating a new user
+// * constructor function for creating a new user, using pointers to avoid copying the entire struct
+// * and return a pointer to the new user
 func createUser(firstName, lastName, birthdate string) *user {
 	return &user{
 		userFirstName: firstName,
@@ -44,7 +45,7 @@ func main() {
 
 	appUser = *createUser(firstName, lastName, birthdate)
 
-	// ... do something awesome with that gathered data!
+	// ? ... do something awesome with that gathered data!
 
 	appUser.outputUserDetails()
 	appUser.clearUserDetails()
