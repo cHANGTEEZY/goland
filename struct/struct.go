@@ -12,6 +12,13 @@ type user struct {
 	userCreatedAt time.Time
 }
 
+// * adding a method to the user struct, and the appuser here is called the receiver
+func (appUser user) outputUserDetails() {
+	fmt.Println(appUser.userFirstName, appUser.userLastName, appUser.userBirthDate)
+
+	fmt.Println("User created at:", appUser.userCreatedAt)
+}
+
 func main() {
 	firstName := getUserData("Please enter your first name: ")
 	lastName := getUserData("Please enter your last name: ")
@@ -28,13 +35,7 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	outputUserDetails(&appUser)
-}
-
-func outputUserDetails(appUser *user) {
-	fmt.Println(appUser.userFirstName, appUser.userLastName, appUser.userBirthDate)
-
-	fmt.Println("User created at:", appUser.userCreatedAt)
+	appUser.outputUserDetails()
 }
 
 func getUserData(promptText string) string {
