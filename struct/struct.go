@@ -28,10 +28,10 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	outputUserDetails(appUser)
+	outputUserDetails(&appUser)
 }
 
-func outputUserDetails(appUser user) {
+func outputUserDetails(appUser *user) {
 	fmt.Println(appUser.userFirstName, appUser.userLastName, appUser.userBirthDate)
 
 	fmt.Println("User created at:", appUser.userCreatedAt)
