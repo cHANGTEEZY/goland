@@ -32,7 +32,6 @@ func main() {
 
 	ebt, profit, ratio := calculateFinancials(revenue, expenses, taxRate)
 
-
 	_ = storeResultsInFile("profit", profit)
 	_ = storeResultsInFile("ebt", ebt)
 	_ = storeResultsInFile("ratio", ratio)
@@ -40,6 +39,7 @@ func main() {
 	fmt.Printf("EBT: %.1f\n", ebt)
 	fmt.Printf("Profit: %.1f\n", profit)
 	fmt.Printf("Ratio: %.3f\n", ratio)
+
 }
 
 func calculateFinancials(revenue, expenses, taxRate float64) (float64, float64, float64) {

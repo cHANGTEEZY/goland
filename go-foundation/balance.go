@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
+	"go-foundation/fileops/getFloatFromFile"
 	"os"
-	"strconv"
-	"strings"
 )
-
 
 const balanceFile = "balance.txt"
 const withdrawReceiptFile = "withdrawReceipt.txt"
@@ -21,38 +19,20 @@ func writeWithdrawReceiptToFile(amount float64) {
 	os.WriteFile(withdrawReceiptFile, []byte(receiptText), 0644)
 }
 
-func getBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile(balanceFile)
-	if err != nil {
-		fmt.Println("Errro!!!")
-		return 1000.0, nil
-	}
-	balanceText := strings.TrimSpace(string(data))
-	balance, err := strconv.ParseFloat(balanceText, 64)
-	if err != nil {
-		return 0, err
-	}
-	return balance, nil
-}
-
 func main() {
 	fmt.Println("Welcome to GO Bank!")
 
 	for {
-		accountBalance, err := getBalanceFromFile()
+		accountBalance, err := getFloatFromFile.GetFloatFromFile()
 		if err != nil {
 			fmt.Println("Error loading balance:", err)
 			panic(err)
 		}
 
-		fmt.Println("\nWhat do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit")
-		fmt.Println("3. Withdraw")
-		fmt.Println("4. Exit")
-		fmt.Print("Enter your choice: ")
-
 		var choice int
+
+		presentOptions()
+
 		fmt.Scanln(&choice)
 
 		switch choice {
@@ -95,7 +75,6 @@ func main() {
 		case 4:
 			fmt.Println("Thank you for using GO Bank! Goodbye!")
 			return
-
 
 		default:
 			fmt.Println("Invalid selection. Please try again.")
