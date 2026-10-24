@@ -13,8 +13,8 @@ type user struct {
 }
 
 // constructor function for creating a new user
-func createUser(firstName, lastName, birthdate string) user {
-	return user{
+func createUser(firstName, lastName, birthdate string) *user {
+	return &user{
 		userFirstName: firstName,
 		userLastName:  lastName,
 		userBirthDate: birthdate,
@@ -42,7 +42,7 @@ func main() {
 
 	var appUser user
 
-	appUser = createUser(firstName, lastName, birthdate)
+	appUser = *createUser(firstName, lastName, birthdate)
 
 	// ... do something awesome with that gathered data!
 
