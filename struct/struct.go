@@ -12,6 +12,16 @@ type user struct {
 	userCreatedAt time.Time
 }
 
+// constructor function for creating a new user
+func createUser(firstName, lastName, birthdate string) user {
+	return user{
+		userFirstName: firstName,
+		userLastName:  lastName,
+		userBirthDate: birthdate,
+		userCreatedAt: time.Now(),
+	}
+}
+
 // * adding a method to the user struct, and the appuser here is called the receiver
 func (appUser user) outputUserDetails() {
 	fmt.Println(appUser.userFirstName, appUser.userLastName, appUser.userBirthDate)
@@ -32,12 +42,7 @@ func main() {
 
 	var appUser user
 
-	appUser = user{
-		userFirstName: firstName,
-		userLastName:  lastName,
-		userBirthDate: birthdate,
-		userCreatedAt: time.Now(),
-	}
+	appUser = createUser(firstName, lastName, birthdate)
 
 	// ... do something awesome with that gathered data!
 
