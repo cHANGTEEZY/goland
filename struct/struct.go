@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
@@ -14,13 +15,17 @@ type user struct {
 
 // * constructor function for creating a new user, using pointers to avoid copying the entire struct
 // * and return a pointer to the new user
-func createUser(firstName, lastName, birthdate string) *user {
+func createUser(firstName, lastName, birthdate string) (*user, error) {
+	if firstName == "" || lastName == "" || birthdate == "" {
+		return nil, errors.New("First name, Last name and Birthdate is required")
+	}
+
 	return &user{
 		userFirstName: firstName,
 		userLastName:  lastName,
 		userBirthDate: birthdate,
 		userCreatedAt: time.Now(),
-	}
+	}, nil
 }
 
 // * adding a method to the user struct, and the appuser here is called the receiver
@@ -41,9 +46,14 @@ func main() {
 	lastName := getUserData("Please enter your last name: ")
 	birthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	var appUser user
+	var appUser *user
 
-	appUser = *createUser(firstName, lastName, birthdate)
+	appUser, err := createUser(firstName, lastName, birthdate)
+
+	if (err != nil) {
+		fmt.Println(err)
+		return
+	}
 
 	// ? ... do something awesome with that gathered data!
 
@@ -55,6 +65,6 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
