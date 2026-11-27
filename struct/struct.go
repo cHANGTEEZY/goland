@@ -55,8 +55,6 @@ func main() {
 		return
 	}
 
-	// ? ... do something awesome with that gathered data!
-
 	appUser.outputUserDetails()
 	appUser.clearUserDetails()
 	appUser.outputUserDetails()
