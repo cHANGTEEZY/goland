@@ -1,19 +1,26 @@
 package main
 
-// setting cost of sending email based on wheather user is subscribed or not
+import "fmt"
+
 func (e email) cost() int {
 	costPerCharacter := 2
+	message := e.body
 
 	if !e.isSubscribed {
 		costPerCharacter = 5
-		return costPerCharacter
+		return len(message) * costPerCharacter
 	}
-	return costPerCharacter
+
+	return len(message) * costPerCharacter
 }
 
-// need to do something
 func (e email) format() string {
-	return ""
+	message := "Not Subscribed"
+	if e.isSubscribed {
+		message = "Subscribed"
+	}
+
+	return fmt.Sprintf("'%s' | %s", e.body, message)
 }
 
 type expense interface {
