@@ -1,8 +1,14 @@
 package main
 
-// need to do something
+// setting cost of sending email based on wheather user is subscribed or not
 func (e email) cost() int {
-	return 1
+	costPerCharacter := 2
+
+	if !e.isSubscribed {
+		costPerCharacter = 5
+		return costPerCharacter
+	}
+	return costPerCharacter
 }
 
 // need to do something
